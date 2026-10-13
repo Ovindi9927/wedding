@@ -33,7 +33,6 @@
             min-height: 100vh;
         }
 
-        /* Canvas Background for Rose Petals & Sparkles */
         #bg-canvas {
             position: fixed;
             top: 0;
@@ -61,7 +60,7 @@
             font-family: 'Cinzel', serif;
             font-size: clamp(2rem, 5vw, 3.5rem);
             color: var(--gold-light);
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             letter-spacing: 2px;
             text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
         }
@@ -70,7 +69,8 @@
             font-family: 'Playfair Display', serif;
             font-style: italic;
             color: var(--text-muted);
-            font-size: 1.2rem;
+            font-size: 1.25rem;
+            line-height: 1.6;
         }
 
         .card {
@@ -123,7 +123,20 @@
             font-size: 1rem;
         }
 
-        /* Color Palette Grid: 2 rows of 3 columns */
+        .map-container {
+            margin-top: 20px;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--border-gold);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 250px;
+            border: 0;
+            display: block;
+        }
+
         .color-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -153,7 +166,6 @@
             font-weight: 600;
         }
 
-        /* Forms & Buttons */
         .form-group {
             margin-bottom: 15px;
             text-align: left;
@@ -197,6 +209,11 @@
             box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
         }
 
+        .btn-wa {
+            background: #25d366;
+            color: #fff;
+        }
+
         .countdown {
             display: flex;
             justify-content: center;
@@ -226,6 +243,66 @@
             letter-spacing: 1px;
         }
 
+        .admin-trigger {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .admin-btn {
+            background: none;
+            border: none;
+            color: var(--gold);
+            cursor: pointer;
+            text-decoration: underline;
+            font-size: 0.9rem;
+            opacity: 0.7;
+        }
+        .admin-btn:hover { opacity: 1; }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(8px);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            padding: 15px;
+        }
+
+        .modal-content {
+            background: #141414;
+            border: 1px solid var(--gold);
+            border-radius: 18px;
+            padding: 25px;
+            max-width: 420px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.9);
+            position: relative;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 12px; right: 18px;
+            font-size: 1.6rem;
+            color: #aaa;
+            cursor: pointer;
+        }
+
+        .result-box {
+            margin-top: 15px;
+            word-break: break-all;
+            background: rgba(255,255,255,0.05);
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: var(--gold);
+            display: none;
+            text-align: left;
+        }
+
         footer {
             text-align: center;
             padding: 40px 20px;
@@ -236,14 +313,15 @@
         }
     </style>
 </head>
+
 <body>
 
     <canvas id="bg-canvas"></canvas>
 
     <div class="container">
         <header>
-            <h1 id="guest-greeting">Duleeka & Ovindi </h1>
-            <p>Together with their families, invite you to celebrate their wedding</p>
+            <h1 id="guest-greeting">Duleeka & Ovindi</h1>
+            <p id="invitation-subtitle">Together with their families, invite you to celebrate their wedding</p>
         </header>
 
         <div class="card">
@@ -270,6 +348,9 @@
                 <div class="detail-item" style="grid-column: 1 / -1;">
                     <h3>Venue</h3>
                     <p>Mandakini Club House</p>
+                    <div class="map-container">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.7984860528257!2d79.9723!3d6.9271!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwNTUnMzguOCJOIDc5wrA1OCcyMC4zIkU!5e0!3m2!1sen!2slk!4v1600000000000!5m2!1sen!2slk" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
                 </div>
             </div>
         </div>
@@ -306,7 +387,7 @@
         </div>
 
         <div class="card">
-            <h2>Photo Hub & Blessing Board</h2>
+            <h2>Digital Blessing Board</h2>
             <p style="color: var(--text-muted); margin-bottom: 15px; font-size: 0.95rem;">Share your wishes and memories with us!</p>
             <form id="wish-form" onsubmit="handleWish(event)">
                 <div class="form-group">
@@ -317,21 +398,82 @@
             </form>
         </div>
 
+        <div class="admin-trigger">
+            <button class="admin-btn" onclick="openGenerator()">⚙️ Guest Link Generator Tool</button>
+        </div>
+
         <footer>
-            <p>&copy; Duleeka & Ovindi . All rights reserved.</p>
+            <p>&copy; Duleeka & Ovindi. All rights reserved.</p>
         </footer>
     </div>
 
+    <div class="modal" id="generatorModal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeGenerator()">&times;</span>
+            <h3 style="color: var(--gold); margin-bottom: 10px; font-family: 'Cinzel', serif;">Link Generator</h3>
+            <p style="font-size: 0.85rem; color: #ccc;">Enter Guest Name:</p>
+            
+            <input type="text" id="guestNameInput" class="form-control" placeholder="e.g. Nimal & Family" style="text-align: center; margin: 15px 0;">
+            
+            <button class="btn" onclick="generateLink()">Generate Link</button>
+            
+            <div class="result-box" id="resultBox">
+                <p id="generatedUrl" style="margin-bottom: 10px;"></p>
+                <button class="btn" onclick="copyGeneratedLink()">📋 Copy Link</button>
+                <button class="btn btn-wa" onclick="shareWhatsApp()" style="margin-top: 8px;">💬 Share via WhatsApp</button>
+            </div>
+        </div>
+    </div>
+
+
     <script>
-        // Personalized Guest Name from URL ?guest=Name
         const urlParams = new URLSearchParams(window.location.search);
         const guestName = urlParams.get('guest');
         if (guestName) {
-            document.getElementById('guest-greeting').innerText = `Welcome, ${decodeURIComponent(guestName)}!`;
-            document.getElementById('rsvp-name').value = decodeURIComponent(guestName);
+            const decodedName = decodeURIComponent(guestName);
+            document.getElementById('guest-greeting').innerText = `Welcome, ${decodedName}!`;
+            document.getElementById('invitation-subtitle').innerHTML = `You are warmly invited to celebrate the wedding of<br><strong style="color: var(--gold-light); font-size: 1.4rem; font-family: 'Cinzel', serif; display: block; margin-top: 8px;">Duleeka & Ovindi</strong>`;
+            document.getElementById('rsvp-name').value = decodedName;
         }
 
-        // Countdown Timer
+        function openGenerator() {
+            document.getElementById('generatorModal').style.display = 'flex';
+        }
+
+        function closeGenerator() {
+            document.getElementById('generatorModal').style.display = 'none';
+        }
+
+        let finalLink = "";
+
+        function generateLink() {
+            const name = document.getElementById('guestNameInput').value.trim();
+            if (!name) {
+                alert("Please enter a guest name!");
+                return;
+            }
+            
+            const baseUrl = window.location.origin + window.location.pathname;
+            finalLink = `${baseUrl}?guest=${encodeURIComponent(name)}`;
+            
+            document.getElementById('generatedUrl').innerText = finalLink;
+            document.getElementById('resultBox').style.display = 'block';
+        }
+
+        function copyGeneratedLink() {
+            if (finalLink) {
+                navigator.clipboard.writeText(finalLink);
+                alert("Link copied successfully!");
+            }
+        }
+
+        function shareWhatsApp() {
+            if (finalLink) {
+                const text = `Warmly inviting you to our wedding! View your invitation here: ${finalLink}`;
+                window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
+            }
+        }
+
         const weddingDate = new Date('2026-12-18T18:30:00').getTime();
         function updateCountdown() {
             const now = new Date().getTime();
@@ -346,7 +488,6 @@
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        // Canvas Rose Petals & Gold Sparkles Background Animation
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');
         let width, height;
@@ -397,9 +538,6 @@
             requestAnimationFrame(animate);
         }
         animate();
-
-        // Form Handlers (Google Apps Script Integration placeholder)
-        const SCRIPT_URL = "YOUR_GOOGLE_APPS_SCRIPT_URL_HERE"; // ඔයාගේ Apps Script URL එක මෙතැනට දෙන්න පුළුවන් (අවශ්‍ය නම්)
 
         function handleRSVP(e) {
             e.preventDefault();
