@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wedding Invitation | Ovindi & Duleeka</title>
+  <style>
+    /* Global Styles & Glassmorphism Theme */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    body {
+      background: radial-gradient(circle at center, #1a1a1a 0%, #000000 100%);
+      color: #f3e5ab;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px;
+    }
+    .container {
+      max-width: 600px;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(212, 175, 55, 0.3);
+      border-radius: 20px;
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
+      margin-top: 20px;
+    }
+    h1 {
+      font-size: 2.2rem;
+      color: #d4af37;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+    h2 {
+      font-size: 1.2rem;
+      color: #ffffff;
+      font-weight: 300;
+      margin-bottom: 25px;
+    }
+    .guest-greeting {
+      background: rgba(212, 175, 55, 0.15);
+      border: 1px dashed #d4af37;
+      padding: 12px 20px;
+      border-radius: 12px;
+      margin: 20px 0;
+      font-size: 1.1rem;
+      color: #fff;
+    }
+    .event-details {
+      margin: 25px 0;
+      line-height: 1.8;
+      font-size: 1rem;
+      color: #ddd;
+    }
+    .event-details strong {
+      color: #d4af37;
+    }
+
+    /* Footer & Admin Link Generator */
+    footer {
+      margin-top: 30px;
+      font-size: 0.85rem;
+      color: #888;
+      width: 100%;
+      text-align: center;
+    }
+    .admin-btn {
+      background: none;
+      border: none;
+      color: #d4af37;
+      font-size: 0.85rem;
+      cursor: pointer;
+      text-decoration: underline;
+      margin-top: 10px;
+      opacity: 0.7;
+      transition: opacity 0.3s;
+    }
+    .admin-btn:hover {
+      opacity: 1;
+    }
+
+    /* Modal / Pop-up Box for Link Generator */
+    .modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(5px);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      padding: 15px;
+    }
+    .modal-content {
+      background: #181818;
+      border: 1px solid #d4af37;
+      border-radius: 15px;
+      padding: 25px;
+      max-width: 450px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.9);
+      position: relative;
+    }
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.5rem;
+      color: #aaa;
+      cursor: pointer;
+    }
+    .close-btn:hover {
+      color: #fff;
+    }
+    input[type="text"] {
+      width: 100%;
+      padding: 12px;
+      margin: 15px 0;
+      border-radius: 8px;
+      border: 1px solid #d4af37;
+      background: #222;
+      color: #fff;
+      font-size: 1rem;
+      text-align: center;
+    }
+    .btn {
+      background: linear-gradient(135deg, #d4af37, #aa7c11);
+      color: #000;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 8px;
+      font-size: 1rem;
+    }
+    .btn-whatsapp {
+      background: #25d366;
+      color: #fff;
+    }
+    .result-box {
+      margin-top: 15px;
+      word-break: break-all;
+      background: rgba(255,255,255,0.05);
+      padding: 10px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      color: #d4af37;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Main Invitation Content -->
+  <div class="container">
+    <h2>WE CORDIALLY INVITE YOU TO CELEBRATE THE WEDDING OF</h2>
+    <h1>Ovindi & Duleeka</h1>
+
+    <!-- Dynamic Guest Name Greeting -->
+    <div class="guest-greeting" id="guestGreeting">
+      ✨ Welcome Our Valued Guest ✨
+    </div>
+
+    <div class="event-details">
+      <p><strong>📅 Date:</strong> December 18, 2026</p>
+      <p><strong>⏰ Time:</strong> 6:30 PM onwards</p>
+      <p><strong>📍 Venue:</strong> Mandakini Club House</p>
+    </div>
+
+    <p style="font-size: 0.9rem; color: #aaa;">We look forward to celebrating our special day with you!</p>
+  </div>
+
+  <!-- Footer with Hidden Generator Link -->
+  <footer>
+    <p>© 2026 Ovindi & Duleeka</p>
+    <button class="admin-btn" onclick="openGenerator()">⚙️ Admin: Generate Guest Link</button>
+  </footer>
+
+  <!-- Modal Pop-up for Link Generator -->
+  <div class="modal" id="generatorModal">
+    <div class="modal-content">
+      <span class="close-btn" onclick="closeGenerator()">&times;</span>
+      <h3 style="color: #d4af37; margin-bottom: 10px;">Guest Link Generator</h3>
+      <p style="font-size: 0.85rem; color: #ccc;">Enter Guest Name to generate customized link:</p>
+      
+      <input type="text" id="guestNameInput" placeholder="e.g. Nimal & Family">
+      
+      <button class="btn" onclick="generateLink()">Generate Link</button>
+      
+      <div class="result-box" id="resultBox">
+        <p id="generatedUrl" style="margin-bottom: 10px;"></p>
+        <button class="btn" onclick="copyGeneratedLink()">📋 Copy Link</button>
+        <button class="btn btn-whatsapp" onclick="shareWhatsApp()">💬 Share via WhatsApp</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // 1. Read Guest Name from URL parameters (?guest=Name)
+    window.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const guestName = urlParams.get('guest');
+      
+      if (guestName) {
+        document.getElementById('guestGreeting').innerHTML = 
+          `✨ Dearest <strong>${decodeURIComponent(guestName)}</strong>, You are warmly invited! ✨`;
+      }
+    });
+
+    // 2. Generator Modal Functions
+    function openGenerator() {
+      document.getElementById('generatorModal').style.display = 'flex';
+    }
+
+    function closeGenerator() {
+      document.getElementById('generatorModal').style.display = 'none';
+    }
+
+    let finalLink = "";
+
+    function generateLink() {
+      const name = document.getElementById('guestNameInput').value.trim();
+      if (!name) {
+        alert("Please enter a guest name!");
+        return;
+      }
+      
+      const baseUrl = window.location.origin + window.location.pathname;
+      finalLink = `${baseUrl}?guest=${encodeURIComponent(name)}`;
+      
+      document.getElementById('generatedUrl').innerText = finalLink;
+      document.getElementById('resultBox').style.display = 'block';
+    }
+
+    function copyGeneratedLink() {
+      if (finalLink) {
+        navigator.clipboard.writeText(finalLink);
+        alert("Link copied to clipboard!");
+      }
+    }
+
+    function shareWhatsApp() {
+      if (finalLink) {
+        const text = `Warmly inviting you to our wedding! Please view your invitation here: ${finalLink}`;
+        window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
+      }
+    }
+  </script>
+</body>
+</html>
