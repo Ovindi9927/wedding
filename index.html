@@ -8,13 +8,13 @@
     <style>
         :root {
             --bg-dark: #07090e;
-            --card-bg: rgba(18, 22, 31, 0.75);
+            --card-bg: rgba(18, 22, 31, 0.45);
             --gold: #d4af37;
             --gold-light: #f3e5ab;
             --gold-dark: #aa7c11;
             --text-main: #f0f2f5;
             --text-muted: #b0b8c4;
-            --border-gold: rgba(212, 175, 55, 0.3);
+            --border-gold: rgba(212, 175, 55, 0.4);
         }
 
         * {
@@ -25,22 +25,16 @@
         }
 
         body {
-            background-color: var(--bg-dark);
+            background: linear-gradient(rgba(7, 9, 14, 0.65), rgba(7, 9, 14, 0.75)), 
+                        url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
             color: var(--text-main);
             font-family: 'Plus Jakarta Sans', sans-serif;
             overflow-x: hidden;
             position: relative;
             min-height: 100vh;
-        }
-
-        #bg-canvas {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            z-index: 0;
         }
 
         .container {
@@ -75,12 +69,13 @@
 
         .card {
             background: var(--card-bg);
-            backdrop-filter: blur(12px);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
             border: 1px solid var(--border-gold);
-            border-radius: 16px;
+            border-radius: 20px;
             padding: 30px;
             margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(212, 175, 55, 0.1);
             text-align: center;
         }
 
@@ -135,6 +130,24 @@
             height: 250px;
             border: 0;
             display: block;
+        }
+
+        .map-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: rgba(212, 175, 55, 0.15);
+            border: 1px solid var(--gold);
+            color: var(--gold-light);
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+        }
+
+        .map-btn:hover {
+            background: var(--gold);
+            color: #000;
         }
 
         .color-grid {
@@ -313,10 +326,7 @@
         }
     </style>
 </head>
-
 <body>
-
-    <canvas id="bg-canvas"></canvas>
 
     <div class="container">
         <header>
@@ -349,10 +359,9 @@
                     <h3>Venue</h3>
                     <p>Mandakini Club House</p>
                     <div class="map-container">
-    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.7984860528257!2d79.9723!3d6.9271!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwNTUnMzguOCJOIDc5wrA1OCcyMC4zIkU!5e0!3m2!1sen!2slk!4v1600000000000!5m2!1sen!2slk" allowfullscreen="" loading="lazy"></iframe>
-</div>
-<a href="https://maps.app.goo.gl/4o2jPnF5zv7eDoFp7?g_st=ic" target="_blank" class="map-btn">📍 Open Location in Google Maps</a>
-
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.7984860528257!2d79.9723!3d6.9271!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwNTUnMzguOCJOIDc5wrA1OCcyMC4zIkU!5e0!3m2!1sen!2slk!4v1600000000000!5m2!1sen!2slk" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                    <a href="https://maps.app.goo.gl/4o2jPnF5zv7eDoFp7?g_st=ic" target="_blank" class="map-btn">📍 Open Location in Google Maps</a>
                 </div>
             </div>
         </div>
@@ -393,6 +402,10 @@
             <p style="color: var(--text-muted); margin-bottom: 15px; font-size: 0.95rem;">Share your wishes and memories with us!</p>
             <form id="wish-form" onsubmit="handleWish(event)">
                 <div class="form-group">
+                    <label>Your Name</label>
+                    <input type="text" id="wish-name" class="form-control" required placeholder="Enter your name">
+                </div>
+                <div class="form-group">
                     <label>Your Wishes</label>
                     <textarea id="wish-text" class="form-control" rows="3" required placeholder="Write your heartfelt wishes..."></textarea>
                 </div>
@@ -427,8 +440,9 @@
         </div>
     </div>
 
-
     <script>
+        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz...";
+
         const urlParams = new URLSearchParams(window.location.search);
         const guestName = urlParams.get('guest');
         if (guestName) {
@@ -490,67 +504,40 @@
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
-        const canvas = document.getElementById('bg-canvas');
-        const ctx = canvas.getContext('2d');
-        let width, height;
-        function resize() {
-            width = canvas.width = window.innerWidth;
-            height = canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resize);
-        resize();
-
-        const particles = [];
-        for (let i = 0; i < 40; i++) {
-            particles.push({
-                x: Math.random() * width,
-                y: Math.random() * height,
-                radius: Math.random() * 4 + 2,
-                speedY: Math.random() * 0.8 + 0.3,
-                speedX: (Math.random() - 0.5) * 0.5,
-                rotation: Math.random() * 360,
-                rotSpeed: (Math.random() - 0.5) * 2,
-                color: Math.random() > 0.4 ? '#58111a' : '#d4af37',
-                opacity: Math.random() * 0.5 + 0.3
-            });
-        }
-
-        function animate() {
-            ctx.clearRect(0, 0, width, height);
-            particles.forEach(p => {
-                ctx.save();
-                ctx.translate(p.x, p.y);
-                ctx.rotate(p.rotation * Math.PI / 180);
-                ctx.globalAlpha = p.opacity;
-                ctx.fillStyle = p.color;
-                ctx.beginPath();
-                ctx.ellipse(0, 0, p.radius * 1.5, p.radius, 0, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.restore();
-
-                p.y += p.speedY;
-                p.x += p.speedX;
-                p.rotation += p.rotSpeed;
-
-                if (p.y > height + 10) {
-                    p.y = -10;
-                    p.x = Math.random() * width;
-                }
-            });
-            requestAnimationFrame(animate);
-        }
-        animate();
-
         function handleRSVP(e) {
             e.preventDefault();
-            alert("Thank you! Your RSVP has been recorded.");
-            document.getElementById('rsvp-form').reset();
+            const name = document.getElementById('rsvp-name').value;
+            const status = document.getElementById('rsvp-status').value;
+
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ type: 'RSVP', name: name, status: status })
+            }).then(() => {
+                alert("Thank you! Your RSVP has sent successfully.");
+                document.getElementById('rsvp-form').reset();
+            }).catch(() => {
+                alert("Something went wrong. Please try again.");
+            });
         }
 
         function handleWish(e) {
             e.preventDefault();
-            alert("Thank you for your warm blessing!");
-            document.getElementById('wish-form').reset();
+            const name = document.getElementById('wish-name').value;
+            const wish = document.getElementById('wish-text').value;
+
+            fetch(SCRIPT_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ type: 'WISH', name: name, wish: wish })
+            }).then(() => {
+                alert("Thank you for your heartfelt blessing!");
+                document.getElementById('wish-form').reset();
+            }).catch(() => {
+                alert("Something went wrong. Please try again.");
+            });
         }
     </script>
 </body>
