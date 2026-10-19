@@ -1,544 +1,714 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ovindi & Duleeka Wedding Invitation</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg-dark: #07090e;
-            --card-bg: rgba(18, 22, 31, 0.45);
-            --gold: #d4af37;
-            --gold-light: #f3e5ab;
-            --gold-dark: #aa7c11;
-            --text-main: #f0f2f5;
-            --text-muted: #b0b8c4;
-            --border-gold: rgba(212, 175, 55, 0.4);
-        }
-
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background: linear-gradient(rgba(7, 9, 14, 0.65), rgba(7, 9, 14, 0.75)), 
-                        url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1920&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: var(--text-main);
-            font-family: 'Plus Jakarta Sans', sans-serif;
-            overflow-x: hidden;
-            position: relative;
-            min-height: 100vh;
-        }
-
-        .container {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        header {
-            text-align: center;
-            padding: 60px 20px 40px;
-        }
-
-        header h1 {
-            font-family: 'Cinzel', serif;
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            color: var(--gold-light);
-            margin-bottom: 15px;
-            letter-spacing: 2px;
-            text-shadow: 0 2px 10px rgba(212, 175, 55, 0.3);
-        }
-
-        header p {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            color: var(--text-muted);
-            font-size: 1.25rem;
-            line-height: 1.6;
-        }
-
-        .card {
-            background: var(--card-bg);
-            backdrop-filter: blur(16px);
-            -webkit-backdrop-filter: blur(16px);
-            border: 1px solid var(--border-gold);
-            border-radius: 20px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(212, 175, 55, 0.1);
-            text-align: center;
-        }
-
-        .card h2 {
-            font-family: 'Cinzel', serif;
-            color: var(--gold);
-            margin-bottom: 20px;
-            font-size: 1.8rem;
-        }
-
-        .details-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        @media(min-width: 600px) {
-            .details-grid {
-                grid-template-columns: 1fr 1fr;
+    <title>Wedding Invitation | Duleeka & Ovindi</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@600;700;900&family=Great+Vibes&family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        maroon: {
+                            50: '#fff1f2',
+                            100: '#ffe4e6',
+                            700: '#9f1239',
+                            800: '#800020', // Burgundy Maroon
+                            900: '#4c0013',
+                            950: '#2b000a',
+                        },
+                        gold: {
+                            300: '#F3E5AB',
+                            400: '#E6C200',
+                            500: '#D4AF37',
+                            600: '#AA820A'
+                        }
+                    },
+                    fontFamily: {
+                        script: ['Great Vibes', 'cursive'],
+                        title: ['Cinzel Decorative', 'serif'],
+                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
             }
         }
+    </script>
 
-        .detail-item {
-            background: rgba(255,255,255,0.03);
-            padding: 20px;
-            border-radius: 12px;
-            border: 1px solid rgba(212, 175, 55, 0.15);
+    <style>
+        /* Glassmorphism Styling */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.90);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(128, 0, 32, 0.15);
+            box-shadow: 0 20px 50px rgba(76, 0, 19, 0.12);
         }
 
-        .detail-item h3 {
-            color: var(--gold-light);
-            font-family: 'Cinzel', serif;
-            margin-bottom: 8px;
-            font-size: 1.1rem;
+        .glass-dark {
+            background: rgba(20, 3, 8, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(212, 175, 55, 0.35);
         }
 
-        .detail-item p {
-            color: var(--text-muted);
-            font-size: 1rem;
+        .maroon-gradient-text {
+            background: linear-gradient(135deg, #800020 0%, #4c0013 50%, #800020 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .map-container {
-            margin-top: 20px;
-            border-radius: 12px;
-            overflow: hidden;
-            border: 1px solid var(--border-gold);
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FFE8A3 0%, #D4AF37 50%, #AA820A 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .map-container iframe {
-            width: 100%;
-            height: 250px;
-            border: 0;
-            display: block;
-        }
-
-        .map-btn {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 10px 20px;
-            background: rgba(212, 175, 55, 0.15);
-            border: 1px solid var(--gold);
-            color: var(--gold-light);
-            text-decoration: none;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            transition: all 0.3s ease;
-        }
-
-        .map-btn:hover {
-            background: var(--gold);
-            color: #000;
-        }
-
-        .color-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .color-swatch {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid var(--border-gold);
-            padding: 15px 10px;
-            border-radius: 10px;
-            text-align: center;
-        }
-
-        .swatch-circle {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            margin: 0 auto 8px;
-            border: 2px solid var(--gold);
-        }
-
-        .color-swatch div:last-child {
-            font-size: 0.85rem;
-            color: var(--text-main);
-            font-weight: 600;
-        }
-
-        .form-group {
-            margin-bottom: 15px;
-            text-align: left;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: var(--gold-light);
-            font-size: 0.9rem;
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 12px;
-            background: rgba(0,0,0,0.4);
-            border: 1px solid var(--border-gold);
-            border-radius: 8px;
-            color: var(--text-main);
-            font-family: 'Plus Jakarta Sans', sans-serif;
-        }
-
-        .btn {
-            background: linear-gradient(135deg, var(--gold-dark), var(--gold));
-            color: #000;
-            font-weight: 700;
-            padding: 12px 30px;
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: 0.3s;
-            font-family: 'Cinzel', serif;
-            letter-spacing: 1px;
-            width: 100%;
-            margin-top: 10px;
-        }
-
-        .btn:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
-        }
-
-        .btn-wa {
-            background: #25d366;
-            color: #fff;
-        }
-
-        .countdown {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            margin: 20px 0;
-        }
-
-        .countdown-box {
-            background: rgba(212, 175, 55, 0.1);
-            border: 1px solid var(--border-gold);
-            padding: 15px;
-            border-radius: 10px;
-            min-width: 70px;
-        }
-
-        .countdown-number {
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--gold-light);
-            font-family: 'Cinzel', serif;
-        }
-
-        .countdown-label {
-            font-size: 0.75rem;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .admin-trigger {
-            text-align: center;
-            margin-top: 30px;
-        }
-
-        .admin-btn {
-            background: none;
-            border: none;
-            color: var(--gold);
-            cursor: pointer;
-            text-decoration: underline;
-            font-size: 0.9rem;
-            opacity: 0.7;
-        }
-        .admin-btn:hover { opacity: 1; }
-
-        .modal {
-            display: none;
+        /* Floating Rose Petals Animation */
+        .petal {
             position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85);
-            backdrop-filter: blur(8px);
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            padding: 15px;
+            background: radial-gradient(circle at 30% 30%, #a31237, #800020);
+            border-radius: 150% 0 150% 0;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0.7;
+            animation: fall linear infinite, sway ease-in-out infinite alternate;
         }
 
-        .modal-content {
-            background: #141414;
-            border: 1px solid var(--gold);
-            border-radius: 18px;
-            padding: 25px;
-            max-width: 420px;
-            width: 100%;
-            text-align: center;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.9);
-            position: relative;
+        @keyframes fall {
+            0% { top: -10%; }
+            100% { top: 110%; }
         }
 
-        .close-btn {
-            position: absolute;
-            top: 12px; right: 18px;
-            font-size: 1.6rem;
-            color: #aaa;
+        @keyframes sway {
+            0% { transform: rotate(0deg) translateX(0px); }
+            100% { transform: rotate(180deg) translateX(50px); }
+        }
+
+        /* Pulse Button Animation */
+        @keyframes ring-pulse {
+            0% { box-shadow: 0 0 0 0 rgba(128, 0, 32, 0.5); }
+            70% { box-shadow: 0 0 0 15px rgba(128, 0, 32, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(128, 0, 32, 0); }
+        }
+
+        .pulse-audio {
+            animation: ring-pulse 2s infinite;
+        }
+
+        #scratchCanvas {
+            touch-action: none;
             cursor: pointer;
         }
 
-        .result-box {
-            margin-top: 15px;
-            word-break: break-all;
-            background: rgba(255,255,255,0.05);
-            padding: 12px;
-            border-radius: 8px;
-            font-size: 0.85rem;
-            color: var(--gold);
-            display: none;
-            text-align: left;
+        /* Wishing Tree Floating Nodes */
+        .wish-node {
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            animation: floatNode 3s ease-in-out infinite alternate;
         }
 
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            border-top: 1px solid rgba(212, 175, 55, 0.1);
-            margin-top: 40px;
+        @keyframes floatNode {
+            0% { transform: translateY(0px) scale(1); }
+            100% { transform: translateY(-4px) scale(1.1); }
+        }
+
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #fff;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #800020;
+            border-radius: 3px;
         }
     </style>
 </head>
-<body>
+<body class="bg-gradient-to-br from-maroon-50 via-white to-maroon-100 text-gray-800 font-sans min-h-screen relative overflow-x-hidden selection:bg-maroon-800 selection:text-white">
 
-    <div class="container">
-        <header>
-            <h1 id="guest-greeting">Duleeka & Ovindi</h1>
-            <p id="invitation-subtitle">Together with their families, invite you to celebrate their wedding</p>
+    <!-- Petals Canvas Overlay Container -->
+    <div id="petalsContainer" class="fixed inset-0 pointer-events-none z-0"></div>
+
+    <!-- AUDIO ELEMENT WITH MULTIPLE SOURCES FOR CROSS-PLATFORM SUPPORT -->
+    <audio id="weddingAudio" loop preload="auto" playsinline>
+        <source src="https://docs.google.com/uc?export=open&id=1telt4vD_hGdfzb32oVoAjHINR8VWSasT" type="audio/mpeg">
+        <source src="https://drive.google.com/uc?export=download&id=1telt4vD_hGdfzb32oVoAjHINR8VWSasT" type="audio/mp3">
+    </audio>
+
+    <!-- ENTRANCE OVERLAY (FIXES iOS & ANDROID AUTOPLAY) -->
+    <div id="audioOverlay" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-maroon-950/90 backdrop-blur-md transition-all duration-700">
+        <div class="glass-dark rounded-3xl p-8 text-center max-w-sm w-full border border-gold-500/40 shadow-2xl space-y-6">
+            <div class="relative w-24 h-24 mx-auto">
+                <div class="absolute inset-0 bg-gold-500/20 rounded-full animate-ping"></div>
+                <div class="relative w-full h-full bg-gradient-to-tr from-maroon-900 to-maroon-700 rounded-full flex items-center justify-center border-2 border-gold-500 shadow-xl">
+                    <i class="fas fa-envelope-open-text text-4xl text-gold-400"></i>
+                </div>
+            </div>
+
+            <div>
+                <p class="font-serif text-xs uppercase tracking-[0.25em] text-gold-300 font-semibold">You Are Cordially Invited</p>
+                <h2 class="font-script text-4xl sm:text-5xl gold-gradient-text mt-1">Duleeka & Ovindi</h2>
+                <p class="text-xs text-gray-300 mt-2 italic font-light">
+                    "මතක මං පොත අතුරා..."
+                </p>
+            </div>
+
+            <!-- TAP BUTTON THAT UNLOCKS AUDIO -->
+            <button id="startBtn" onclick="handleUserEntrance()" 
+                    class="w-full py-4 px-6 rounded-full bg-gradient-to-r from-gold-500 via-gold-400 to-gold-600 text-maroon-950 font-bold text-xs uppercase tracking-widest shadow-2xl hover:brightness-110 active:scale-95 transition-all duration-300 pulse-audio">
+                <i class="fas fa-heart mr-2 text-maroon-800"></i> Tap to Open Invitation
+            </button>
+
+            <div class="pt-2 border-t border-gold-500/20 text-center">
+                <p class="text-[11px] text-gold-300/90 font-light flex items-center justify-center gap-1.5">
+                    <i class="fas fa-music text-gold-400 animate-pulse"></i> 
+                    <span>"මතක මං පොත අතුරා" සින්දුව පසුබිමෙන් වාදනය වේ</span>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- FLOATING AUDIO CONTROL BUTTON -->
+    <button onclick="toggleAudio()" id="audioBtn" aria-label="Toggle Music" 
+            class="fixed top-5 right-5 z-40 w-12 h-12 bg-maroon-800 text-gold-300 rounded-full flex items-center justify-center border border-gold-500/50 shadow-xl transition-transform hover:scale-110 active:scale-95">
+        <i id="audioIcon" class="fas fa-volume-up text-base"></i>
+    </button>
+
+    <!-- MAIN CONTENT -->
+    <main class="max-w-md mx-auto min-h-screen px-4 py-8 relative z-10 space-y-8">
+
+        <!-- HEADER / PERSONALIZED GUEST WELCOME -->
+        <header class="glass-card rounded-3xl p-6 sm:p-8 text-center relative overflow-hidden border-t-4 border-t-maroon-800">
+            <div class="flex justify-center items-center gap-3 mb-2">
+                <span class="h-[1px] w-12 bg-gradient-to-r from-transparent to-maroon-800"></span>
+                <i class="fas fa-rose text-maroon-800 text-lg"></i>
+                <span class="h-[1px] w-12 bg-gradient-to-l from-transparent to-maroon-800"></span>
+            </div>
+
+            <div class="inline-block bg-maroon-50 border border-maroon-200 rounded-full px-4 py-1 mb-4 shadow-sm">
+                <p class="text-xs font-serif text-maroon-800 font-semibold" id="guestGreetingDisplay">
+                    Dearest Honored Guest
+                </p>
+            </div>
+
+            <p class="font-serif text-xs uppercase tracking-[0.25em] text-gray-500 mb-2">Together With Their Families</p>
+
+            <div class="py-2">
+                <h1 class="font-script text-5xl sm:text-6xl maroon-gradient-text leading-tight drop-shadow-sm">
+                    Duleeka Dushmantha
+                </h1>
+                <p class="font-serif text-xs uppercase tracking-widest text-maroon-900/60 font-bold my-1">— & —</p>
+                <h1 class="font-script text-5xl sm:text-6xl maroon-gradient-text leading-tight drop-shadow-sm">
+                    Ovindi Methsarani
+                </h1>
+            </div>
+
+            <div class="mt-6 pt-6 border-t border-maroon-100 text-center space-y-3">
+                <p class="font-serif text-sm italic text-maroon-950 leading-relaxed font-medium">
+                    "ආදරයේ මිහිරිම මතක පොත අතරේ, අපගේ නොමියෙන සෙනෙහසේ නව පරිච්ඡේදය ඇරඹෙන මොහොතේ..."
+                </p>
+                <p class="text-xs text-gray-600 leading-relaxed font-light">
+                    Under the starlit canopy of grace and elegance, we invite you to witness the union of two souls woven together in love. Your presence is the cherished blessing that will make our celebration complete.
+                </p>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-maroon-100/60">
+                <button onclick="openGuestModal()" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-full bg-maroon-800 text-gold-300 text-[11px] font-bold shadow hover:bg-maroon-900 transition-all">
+                    <i class="fas fa-link text-[10px]"></i> Create Personalized Guest Link
+                </button>
+            </div>
         </header>
 
-        <div class="card">
-            <h2>Wedding Countdown</h2>
-            <div class="countdown" id="countdown">
-                <div class="countdown-box"><div class="countdown-number" id="days">00</div><div class="countdown-label">Days</div></div>
-                <div class="countdown-box"><div class="countdown-number" id="hours">00</div><div class="countdown-label">Hours</div></div>
-                <div class="countdown-box"><div class="countdown-number" id="minutes">00</div><div class="countdown-label">Mins</div></div>
-                <div class="countdown-box"><div class="countdown-number" id="seconds">00</div><div class="countdown-label">Secs</div></div>
+        <!-- SCRATCH-OFF DATE CARD & LIVE COUNTDOWN -->
+        <section class="glass-card rounded-3xl p-6 sm:p-8 text-center space-y-5 border-b-4 border-b-maroon-800">
+            <div class="space-y-1">
+                <span class="text-[11px] font-serif uppercase tracking-[0.2em] text-maroon-800 font-bold">Unveil The Moment</span>
+                <h2 class="font-serif text-lg font-bold text-gray-900">Scratch Below To Reveal Date</h2>
+                <p class="text-xs text-gray-500">Use your finger or mouse to scratch the rose golden surface</p>
             </div>
-        </div>
 
-        <div class="card">
-            <h2>Event Details</h2>
-            <div class="details-grid">
-                <div class="detail-item">
-                    <h3>Date</h3>
-                    <p>December 18, 2026</p>
+            <div class="relative w-full h-32 rounded-2xl overflow-hidden shadow-inner border-2 border-maroon-200 bg-gradient-to-r from-maroon-900 via-maroon-800 to-maroon-950 flex flex-col items-center justify-center p-4">
+                <div class="text-center text-white space-y-1 select-none">
+                    <p class="font-serif text-xs uppercase tracking-widest text-gold-300 font-semibold"><i class="fas fa-calendar-star mr-1"></i> Save The Date</p>
+                    <p class="font-serif text-2xl font-bold gold-gradient-text">DECEMBER 18, 2026</p>
+                    <p class="text-xs text-gray-200 font-medium"><i class="far fa-clock text-gold-300 mr-1"></i> 6:30 PM Onwards</p>
                 </div>
-                <div class="detail-item">
-                    <h3>Time</h3>
-                    <p>Starting at 6:30 PM</p>
-                </div>
-                <div class="detail-item" style="grid-column: 1 / -1;">
-                    <h3>Venue</h3>
-                    <p>Mandakini Club House</p>
-                    <div class="map-container">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.7984860528257!2d79.9723!3d6.9271!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNsKwNTUnMzguOCJOIDc5wrA1OCcyMC4zIkU!5e0!3m2!1sen!2slk!4v1600000000000!5m2!1sen!2slk" allowfullscreen="" loading="lazy"></iframe>
+                <canvas id="scratchCanvas" class="absolute inset-0 w-full h-full z-10 transition-opacity duration-700"></canvas>
+            </div>
+
+            <div class="pt-2">
+                <p class="text-[11px] font-serif uppercase tracking-widest text-gray-500 mb-3">Countdown To Our Special Night</p>
+                <div class="grid grid-cols-4 gap-2" id="countdownTimer">
+                    <div class="bg-maroon-800/5 rounded-2xl p-2.5 border border-maroon-800/10">
+                        <span id="cdDays" class="block font-serif font-bold text-2xl text-maroon-800">00</span>
+                        <span class="text-[9px] uppercase tracking-wider text-gray-500">Days</span>
                     </div>
-                    <a href="https://maps.app.goo.gl/4o2jPnF5zv7eDoFp7?g_st=ic" target="_blank" class="map-btn">📍 Open Location in Google Maps</a>
+                    <div class="bg-maroon-800/5 rounded-2xl p-2.5 border border-maroon-800/10">
+                        <span id="cdHours" class="block font-serif font-bold text-2xl text-maroon-800">00</span>
+                        <span class="text-[9px] uppercase tracking-wider text-gray-500">Hours</span>
+                    </div>
+                    <div class="bg-maroon-800/5 rounded-2xl p-2.5 border border-maroon-800/10">
+                        <span id="cdMins" class="block font-serif font-bold text-2xl text-maroon-800">00</span>
+                        <span class="text-[9px] uppercase tracking-wider text-gray-500">Mins</span>
+                    </div>
+                    <div class="bg-maroon-800/5 rounded-2xl p-2.5 border border-maroon-800/10">
+                        <span id="cdSecs" class="block font-serif font-bold text-2xl text-maroon-800">00</span>
+                        <span class="text-[9px] uppercase tracking-wider text-gray-500">Secs</span>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
 
-        <div class="card">
-            <h2>Dress Code Color Palette</h2>
-            <p style="color: var(--text-muted); margin-bottom: 15px; font-size: 0.95rem;">We would love to see our guests dressed in elegance matching our palette:</p>
-            <div class="color-grid">
-                <div class="color-swatch"><div class="swatch-circle" style="background:#0b3b24;"></div><div>Emerald Green</div></div>
-                <div class="color-swatch"><div class="swatch-circle" style="background:#58111a;"></div><div>Burgundy / Wine</div></div>
-                <div class="color-swatch"><div class="swatch-circle" style="background:#0a2342;"></div><div>Royal Navy</div></div>
-                <div class="color-swatch"><div class="swatch-circle" style="background:#c5a059;"></div><div>Champagne Bronze</div></div>
-                <div class="color-swatch"><div class="swatch-circle" style="background:#4a0e4e;"></div><div>Deep Plum</div></div>
-                <div class="color-swatch"><div class="swatch-circle" style="background:#b76e79;"></div><div>Rose Gold / Blush</div></div>
+        <!-- VENUE & MAP SECTION -->
+        <section class="glass-card rounded-3xl p-6 sm:p-8 text-center space-y-5">
+            <div class="w-12 h-12 mx-auto bg-maroon-800 text-gold-300 rounded-full flex items-center justify-center shadow-lg">
+                <i class="fas fa-map-marker-alt text-xl"></i>
             </div>
-        </div>
 
-        <div class="card">
-            <h2>RSVP & Attendance</h2>
-            <form id="rsvp-form" onsubmit="handleRSVP(event)">
-                <div class="form-group">
-                    <label>Your Name</label>
-                    <input type="text" id="rsvp-name" class="form-control" required placeholder="Enter your full name">
+            <div>
+                <p class="font-serif text-xs uppercase tracking-widest text-maroon-800 font-bold">Celebration Venue</p>
+                <h3 class="font-serif text-2xl font-bold text-gray-900 mt-1">Mandakini Banquet Hotel</h3>
+                <p class="text-xs text-gray-600 mt-1">Grand Ballroom • Evening Function</p>
+            </div>
+
+            <div class="rounded-2xl overflow-hidden border border-maroon-200 shadow-md h-48 relative group">
+                <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?q=80&w=800" 
+                     alt="Mandakini Banquet Hotel Venue" 
+                     class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                <div class="absolute inset-0 bg-gradient-to-t from-maroon-950/80 via-transparent to-transparent flex items-end p-4">
+                    <p class="text-white text-xs font-serif italic"><i class="fas fa-sparkles text-gold-400 mr-1"></i> An evening of grandeur and joy</p>
                 </div>
-                <div class="form-group">
-                    <label>Will you attend?</label>
-                    <select id="rsvp-status" class="form-control">
-                        <option value="Joyfully Accepts">Joyfully Accepts</option>
-                        <option value="Regretfully Declines">Regretfully Declines</option>
+            </div>
+
+            <a href="https://maps.app.goo.gl/TawYTBXe6CyuPk8A6?g_st=ic" target="_blank" rel="noopener noreferrer" 
+               class="inline-flex items-center justify-center gap-2 w-full py-4 px-6 rounded-full bg-maroon-800 text-gold-300 font-bold text-xs uppercase tracking-wider shadow-xl hover:bg-maroon-900 active:scale-95 transition-all">
+                <i class="fas fa-directions text-base"></i> Open in Google Maps
+            </a>
+        </section>
+
+        <!-- GUEST DRESS CODE PALETTE SECTION -->
+        <section class="glass-card rounded-3xl p-6 sm:p-8 space-y-5 text-center">
+            <div class="space-y-1">
+                <p class="font-serif text-xs uppercase tracking-widest text-maroon-800 font-bold">Evening Dress Code</p>
+                <h3 class="font-serif text-xl font-bold text-gray-900">Guest Attire Color Palette</h3>
+                <p class="text-xs text-gray-600 leading-relaxed max-w-xs mx-auto">
+                    Bride & Groom will be dressed in elegant <strong>Gold & Black</strong>. Guests are warmly encouraged to choose from our 6-color palette:
+                </p>
+            </div>
+
+            <div class="grid grid-cols-3 gap-3 pt-2">
+                <div class="p-2.5 rounded-2xl bg-white border border-gray-100 shadow-sm text-center">
+                    <div class="w-10 h-10 rounded-full bg-[#800020] border-2 border-gold-300 mx-auto shadow"></div>
+                    <span class="block text-[11px] font-bold text-gray-800 mt-2">Burgundy</span>
+                    <span class="text-[9px] text-gray-400">Maroon</span>
+                </div>
+                <div class="p-2.5 rounded-2xl bg-white border border-gray-100 shadow-sm text-center">
+                    <div class="w-10 h-10 rounded-full bg-[#E6C200] border-2 border-maroon-800 mx-auto shadow"></div>
+                    <span class="block text-[11px] font-bold text-gray-800 mt-2">Champagne</span>
+                    <span class="text-[9px] text-gray-400">Gold Accent</span>
+                </div>
+                <div class="p-2.5 rounded-2xl bg-white border border-gray-100 shadow-sm text-center">
+                    <div class="w-10 h-10 rounded-full bg-[#B76E79] border-2 border-gray-200 mx-auto shadow"></div>
+                    <span class="block text-[11px] font-bold text-gray-800 mt-2">Rose Gold</span>
+                    <span class="text-[9px] text-gray-400">Blush Tone</span>
+                </div>
+                <div class="p-2.5 rounded-2xl bg-white border border-gray-100 shadow-sm text-center">
+                    <div class="w-10 h-10 rounded-full bg-[#0A1128] border-2 border-gold-300 mx-auto shadow"></div>
+                    <span class="block text-[11px] font-bold text-gray-800 mt-2">Midnight</span>
+                    <span class="text-[9px] text-gray-400">Deep Navy</span>
+                </div>
+                <div class="p-2.5 rounded-2xl bg-white border border-gray-100 shadow-sm text-center">
+                    <div class="w-10 h-10 rounded-full bg-[#046A38] border-2 border-gray-200 mx-auto shadow"></div>
+                    <span class="block text-[11px] font-bold text-gray-800 mt-2">Emerald</span>
+                    <span class="text-[9px] text-gray-400">Royal Green</span>
+                </div>
+                <div class="p-2.5 rounded-2xl bg-white border border-gray-100 shadow-sm text-center">
+                    <div class="w-10 h-10 rounded-full bg-[#18181b] border-2 border-maroon-800 mx-auto shadow"></div>
+                    <span class="block text-[11px] font-bold text-gray-800 mt-2">Velvet</span>
+                    <span class="text-[9px] text-gray-400">Black/Plum</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- WISHING TREE SECTION -->
+        <section class="glass-card rounded-3xl p-6 sm:p-8 space-y-6">
+            <div class="text-center space-y-1">
+                <i class="fas fa-tree-decorated text-maroon-800 text-2xl"></i>
+                <p class="font-serif text-xs uppercase tracking-widest text-maroon-800 font-bold">Interactive Blessing</p>
+                <h3 class="font-serif text-2xl font-bold text-gray-900">The Wishing Tree</h3>
+                <p class="text-xs text-gray-600">Leave a heartfelt wish for Duleeka & Ovindi to bloom on the tree</p>
+            </div>
+
+            <div class="relative w-full h-64 bg-gradient-to-b from-maroon-50/50 to-white rounded-2xl border border-maroon-200 p-2 overflow-hidden flex items-center justify-center shadow-inner" id="treeContainer">
+                <svg viewBox="0 0 400 300" class="w-full h-full max-h-60">
+                    <path d="M200,280 Q195,200 200,160 Q170,120 120,100 Q160,110 185,140 Q190,90 150,50 Q180,70 195,110 Q205,70 240,40 Q220,70 205,110 Q225,120 280,90 Q240,110 210,140 Q220,190 200,280" 
+                          fill="none" stroke="#4c0013" stroke-width="8" stroke-linecap="round"/>
+                    <path d="M130,95 Q90,80 60,85" fill="none" stroke="#4c0013" stroke-width="4" stroke-linecap="round"/>
+                    <path d="M270,95 Q310,75 340,80" fill="none" stroke="#4c0013" stroke-width="4" stroke-linecap="round"/>
+                </svg>
+
+                <div id="wishNodesArea" class="absolute inset-0 pointer-events-auto"></div>
+            </div>
+
+            <form id="wishForm" class="space-y-3">
+                <div class="flex gap-2">
+                    <input type="text" id="wishInput" required placeholder="Type your lovely wish here..." 
+                           class="flex-1 px-4 py-3 rounded-2xl bg-white border border-maroon-200 text-xs text-gray-800 placeholder-gray-400 focus:outline-none focus:border-maroon-800 shadow-sm">
+                    <button type="submit" 
+                            class="py-3 px-5 rounded-2xl bg-maroon-800 text-gold-300 font-bold text-xs uppercase tracking-wider hover:bg-maroon-900 active:scale-95 transition-all shadow-md">
+                        <i class="fas fa-paper-plane mr-1"></i> Wish
+                    </button>
+                </div>
+            </form>
+
+            <div class="space-y-2 pt-2">
+                <p class="text-[11px] font-serif uppercase tracking-wider text-gray-500">Recent Blessings:</p>
+                <div id="wishesList" class="space-y-2 max-h-40 overflow-y-auto pr-1"></div>
+            </div>
+        </section>
+
+        <!-- WHATSAPP RSVP FORM SECTION -->
+        <section class="glass-card rounded-3xl p-6 sm:p-8 space-y-5 border-t-4 border-t-maroon-800">
+            <div class="text-center space-y-1">
+                <i class="fab fa-whatsapp text-emerald-600 text-3xl"></i>
+                <h3 class="font-serif text-2xl font-bold text-gray-900">Confirm Your Presence</h3>
+                <p class="text-xs text-gray-600">Please respond by December 01, 2026</p>
+            </div>
+
+            <form id="whatsappRsvpForm" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-serif text-maroon-800 font-bold uppercase tracking-wider mb-1">Your Full Name</label>
+                    <input type="text" id="rsvpGuestName" required placeholder="Enter name" 
+                           class="w-full px-4 py-3 rounded-xl bg-white border border-maroon-200 text-xs text-gray-800 focus:outline-none focus:border-maroon-800 shadow-sm">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-serif text-maroon-800 font-bold uppercase tracking-wider mb-1">Attendance Status</label>
+                    <select id="rsvpStatus" required 
+                            class="w-full px-4 py-3 rounded-xl bg-white border border-maroon-200 text-xs text-gray-800 focus:outline-none focus:border-maroon-800 shadow-sm">
+                        <option value="Joyfully Accepts">Joyfully Accepts (Will Attend)</option>
+                        <option value="Regretfully Declines">Regretfully Declines (Cannot Attend)</option>
                     </select>
                 </div>
-                <button type="submit" class="btn">Send RSVP</button>
-            </form>
-        </div>
 
-        <div class="card">
-            <h2>Digital Blessing Board</h2>
-            <p style="color: var(--text-muted); margin-bottom: 15px; font-size: 0.95rem;">Share your wishes and memories with us!</p>
-            <form id="wish-form" onsubmit="handleWish(event)">
-                <div class="form-group">
-                    <label>Your Name</label>
-                    <input type="text" id="wish-name" class="form-control" required placeholder="Enter your name">
+                <div>
+                    <label class="block text-xs font-serif text-maroon-800 font-bold uppercase tracking-wider mb-1">Total Guests Attending</label>
+                    <input type="number" id="rsvpCount" min="1" max="6" value="1" required 
+                           class="w-full px-4 py-3 rounded-xl bg-white border border-maroon-200 text-xs text-gray-800 focus:outline-none focus:border-maroon-800 shadow-sm">
                 </div>
-                <div class="form-group">
-                    <label>Your Wishes</label>
-                    <textarea id="wish-text" class="form-control" rows="3" required placeholder="Write your heartfelt wishes..."></textarea>
+
+                <div>
+                    <label class="block text-xs font-serif text-maroon-800 font-bold uppercase tracking-wider mb-1">Personal Message / Note</label>
+                    <textarea id="rsvpNote" rows="2" placeholder="Write a note to the couple..." 
+                              class="w-full px-4 py-3 rounded-xl bg-white border border-maroon-200 text-xs text-gray-800 focus:outline-none focus:border-maroon-800 shadow-sm"></textarea>
                 </div>
-                <button type="submit" class="btn">Post Blessing</button>
+
+                <button type="submit" 
+                        class="w-full py-4 px-6 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs uppercase tracking-wider flex items-center justify-center gap-2 shadow-xl active:scale-95 transition-all">
+                    <i class="fab fa-whatsapp text-lg"></i> Send Response via WhatsApp
+                </button>
             </form>
-        </div>
+        </section>
 
-        <div class="admin-trigger">
-            <button class="admin-btn" onclick="openGenerator()">⚙️ Guest Link Generator Tool</button>
-        </div>
-
-        <footer>
-            <p>&copy; Duleeka & Ovindi. All rights reserved.</p>
+        <footer class="text-center space-y-2 pt-4 pb-8">
+            <p class="font-script text-4xl maroon-gradient-text">#DuleekaWedsOvindi</p>
+            <p class="text-[10px] text-gray-500 uppercase tracking-widest">Mandakini Banquet Hotel • Dec 18, 2026</p>
         </footer>
-    </div>
 
-    <div class="modal" id="generatorModal">
-        <div class="modal-content">
-            <span class="close-btn" onclick="closeGenerator()">&times;</span>
-            <h3 style="color: var(--gold); margin-bottom: 10px; font-family: 'Cinzel', serif;">Link Generator</h3>
-            <p style="font-size: 0.85rem; color: #ccc;">Enter Guest Name:</p>
+    </main>
+
+    <!-- GUEST LINK GENERATOR MODAL -->
+    <div id="guestModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-maroon-950/80 backdrop-blur-sm hidden">
+        <div class="glass-card rounded-3xl p-6 text-center max-w-xs w-full space-y-4 border border-gold-500/40">
+            <h3 class="font-serif font-bold text-gray-900 text-lg">Personalized Guest Link</h3>
+            <p class="text-xs text-gray-600">Enter your guest's name below to generate a unique WhatsApp invitation link:</p>
             
-            <input type="text" id="guestNameInput" class="form-control" placeholder="e.g. Nimal & Family" style="text-align: center; margin: 15px 0;">
-            
-            <button class="btn" onclick="generateLink()">Generate Link</button>
-            
-            <div class="result-box" id="resultBox">
-                <p id="generatedUrl" style="margin-bottom: 10px;"></p>
-                <button class="btn" onclick="copyGeneratedLink()">📋 Copy Link</button>
-                <button class="btn btn-wa" onclick="shareWhatsApp()" style="margin-top: 8px;">💬 Share via WhatsApp</button>
+            <input type="text" id="modalGuestInput" placeholder="e.g. Kasun Kalhara" 
+                   class="w-full px-4 py-3 rounded-xl bg-white border border-maroon-200 text-xs text-gray-800 focus:outline-none focus:border-maroon-800 shadow-sm">
+
+            <div class="flex gap-2 pt-2">
+                <button onclick="closeGuestModal()" class="flex-1 py-2.5 rounded-xl border border-gray-300 text-xs text-gray-600 font-bold">Cancel</button>
+                <button onclick="copyGuestLink()" class="flex-1 py-2.5 rounded-xl bg-maroon-800 text-gold-300 text-xs font-bold shadow">Copy Link</button>
             </div>
         </div>
     </div>
 
+    <!-- JAVASCRIPT LOGIC -->
     <script>
-        const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbz...";
-
-        const urlParams = new URLSearchParams(window.location.search);
-        const guestName = urlParams.get('guest');
-        if (guestName) {
-            const decodedName = decodeURIComponent(guestName);
-            document.getElementById('guest-greeting').innerText = `Welcome, ${decodedName}!`;
-            document.getElementById('invitation-subtitle').innerHTML = `You are warmly invited to celebrate the wedding of<br><strong style="color: var(--gold-light); font-size: 1.4rem; font-family: 'Cinzel', serif; display: block; margin-top: 8px;">Duleeka & Ovindi</strong>`;
-            document.getElementById('rsvp-name').value = decodedName;
-        }
-
-        function openGenerator() {
-            document.getElementById('generatorModal').style.display = 'flex';
-        }
-
-        function closeGenerator() {
-            document.getElementById('generatorModal').style.display = 'none';
-        }
-
-        let finalLink = "";
-
-        function generateLink() {
-            const name = document.getElementById('guestNameInput').value.trim();
-            if (!name) {
-                alert("Please enter a guest name!");
-                return;
+        // 1. DYNAMIC GUEST NAME FROM URL (?guest=Name)
+        let currentGuestName = "Honored Guest";
+        
+        function initGuestName() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const guestParam = urlParams.get('guest');
+            if (guestParam && guestParam.trim() !== '') {
+                currentGuestName = guestParam.trim();
             }
+            updateGuestNameUI();
+        }
+
+        function updateGuestNameUI() {
+            document.getElementById('guestGreetingDisplay').innerText = `Dearest ${currentGuestName}`;
+            document.getElementById('rsvpGuestName').value = currentGuestName !== "Honored Guest" ? currentGuestName : "";
+        }
+
+        function openGuestModal() {
+            document.getElementById('guestModal').classList.remove('hidden');
+        }
+
+        function closeGuestModal() {
+            document.getElementById('guestModal').classList.add('hidden');
+        }
+
+        function copyGuestLink() {
+            const inputVal = document.getElementById('modalGuestInput').value.trim();
+            if (!inputVal) return;
             
-            const baseUrl = window.location.origin + window.location.pathname;
-            finalLink = `${baseUrl}?guest=${encodeURIComponent(name)}`;
+            const baseUrl = window.location.href.split('?')[0];
+            const personalizedUrl = `${baseUrl}?guest=${encodeURIComponent(inputVal)}`;
             
-            document.getElementById('generatedUrl').innerText = finalLink;
-            document.getElementById('resultBox').style.display = 'block';
+            const tempInput = document.createElement('input');
+            tempInput.value = personalizedUrl;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+
+            alert(`Copied link for ${inputVal}!\n\nYou can now paste and send this link via WhatsApp.`);
+            closeGuestModal();
         }
 
-        function copyGeneratedLink() {
-            if (finalLink) {
-                navigator.clipboard.writeText(finalLink);
-                alert("Link copied successfully!");
+        // 2. MOBILE AUDIO ENGINE (AUTOPLAY FIX)
+        const audio = document.getElementById('weddingAudio');
+        const audioIcon = document.getElementById('audioIcon');
+        let isAudioPlaying = false;
+
+        function handleUserEntrance() {
+            try {
+                const AudioCtx = window.AudioContext || window.webkitAudioContext;
+                if (AudioCtx) {
+                    const audioContext = new AudioCtx();
+                    if (audioContext.state === 'suspended') {
+                        audioContext.resume();
+                    }
+                }
+            } catch (e) {
+                console.log("Web Audio API error", e);
+            }
+
+            audio.play().then(() => {
+                isAudioPlaying = true;
+                audioIcon.className = "fas fa-volume-up text-base text-gold-300";
+            }).catch(err => {
+                console.log("Playback error", err);
+            });
+
+            const overlay = document.getElementById('audioOverlay');
+            overlay.classList.add('opacity-0', 'pointer-events-none');
+            setTimeout(() => {
+                overlay.style.display = 'none';
+            }, 700);
+        }
+
+        function toggleAudio() {
+            if (isAudioPlaying) {
+                audio.pause();
+                audioIcon.className = "fas fa-volume-mute text-base text-gray-400";
+            } else {
+                audio.play().then(() => {
+                    audioIcon.className = "fas fa-volume-up text-base text-gold-300";
+                }).catch(e => console.log(e));
+            }
+            isAudioPlaying = !isAudioPlaying;
+        }
+
+        // 3. FLOATING PETALS GENERATOR
+        function createPetals() {
+            const container = document.getElementById('petalsContainer');
+            const petalCount = 18;
+            for (let i = 0; i < petalCount; i++) {
+                const petal = document.createElement('div');
+                petal.className = 'petal';
+                const size = Math.random() * 12 + 8;
+                petal.style.width = `${size}px`;
+                petal.style.height = `${size * 1.3}px`;
+                petal.style.left = `${Math.random() * 100}%`;
+                petal.style.animationDuration = `${Math.random() * 6 + 6}s, ${Math.random() * 3 + 2}s`;
+                petal.style.animationDelay = `${Math.random() * 5}s`;
+                container.appendChild(petal);
             }
         }
 
-        function shareWhatsApp() {
-            if (finalLink) {
-                const text = `Warmly inviting you to our wedding! View your invitation here: ${finalLink}`;
-                window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`, '_blank');
+        // 4. SCRATCH-OFF CANVAS IMPLEMENTATION
+        function initScratchCard() {
+            const canvas = document.getElementById('scratchCanvas');
+            const ctx = canvas.getContext('2d');
+            
+            function resizeCanvas() {
+                canvas.width = canvas.offsetWidth;
+                canvas.height = canvas.offsetHeight;
+                
+                const grad = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+                grad.addColorStop(0, '#B76E79');
+                grad.addColorStop(0.5, '#E6C200');
+                grad.addColorStop(1, '#800020');
+                ctx.fillStyle = grad;
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                ctx.font = 'bold 12px Playfair Display, serif';
+                ctx.fillStyle = '#ffffff';
+                ctx.textAlign = 'center';
+                ctx.fillText('✨ Scratch Here to Reveal Date ✨', canvas.width / 2, canvas.height / 2 + 4);
             }
+
+            resizeCanvas();
+
+            let isScratching = false;
+
+            function scratch(e) {
+                if (!isScratching) return;
+                const rect = canvas.getBoundingClientRect();
+                const x = (e.clientX || (e.touches && e.touches[0].clientX)) - rect.left;
+                const y = (e.clientY || (e.touches && e.touches[0].clientY)) - rect.top;
+
+                ctx.globalCompositeOperation = 'destination-out';
+                ctx.beginPath();
+                ctx.arc(x, y, 22, 0, Math.PI * 2);
+                ctx.fill();
+            }
+
+            canvas.addEventListener('mousedown', () => isScratching = true);
+            canvas.addEventListener('mouseup', () => isScratching = false);
+            canvas.addEventListener('mousemove', scratch);
+
+            canvas.addEventListener('touchstart', () => isScratching = true);
+            canvas.addEventListener('touchend', () => isScratching = false);
+            canvas.addEventListener('touchmove', scratch);
         }
 
-        const weddingDate = new Date('2026-12-18T18:30:00').getTime();
+        // 5. COUNTDOWN TIMER
+        const weddingTimestamp = new Date(2026, 11, 18, 18, 30, 0).getTime();
+
         function updateCountdown() {
             const now = new Date().getTime();
-            const diff = weddingDate - now;
+            const diff = weddingTimestamp - now;
+
             if (diff > 0) {
-                document.getElementById('days').innerText = Math.floor(diff / (1000 * 60 * 60 * 24));
-                document.getElementById('hours').innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                document.getElementById('minutes').innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-                document.getElementById('seconds').innerText = Math.floor((diff % (1000 * 60)) / 1000);
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const secs = Math.floor((diff % (1000 * 60)) / 1000);
+
+                document.getElementById('cdDays').innerText = days < 10 ? '0' + days : days;
+                document.getElementById('cdHours').innerText = hours < 10 ? '0' + hours : hours;
+                document.getElementById('cdMins').innerText = mins < 10 ? '0' + mins : mins;
+                document.getElementById('cdSecs').innerText = secs < 10 ? '0' + secs : secs;
             }
         }
         setInterval(updateCountdown, 1000);
-        updateCountdown();
 
-        function handleRSVP(e) {
-            e.preventDefault();
-            const name = document.getElementById('rsvp-name').value;
-            const status = document.getElementById('rsvp-status').value;
+        // 6. WISHING TREE LOGIC
+        let wishes = [];
 
-            fetch(SCRIPT_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ type: 'RSVP', name: name, status: status })
-            }).then(() => {
-                alert("Thank you! Your RSVP has sent successfully.");
-                document.getElementById('rsvp-form').reset();
-            }).catch(() => {
-                alert("Something went wrong. Please try again.");
+        function loadWishes() {
+            const stored = localStorage.getItem('duleeka_ovindi_wishes');
+            if (stored) {
+                wishes = JSON.parse(stored);
+            } else {
+                wishes = [
+                    { name: "Family", text: "Wishing you a lifetime of love and eternal happiness!" },
+                    { name: "Friends", text: "May your night function be as magical as your love story!" }
+                ];
+            }
+            renderWishes();
+        }
+
+        function renderWishes() {
+            const list = document.getElementById('wishesList');
+            const nodesContainer = document.getElementById('wishNodesArea');
+            list.innerHTML = '';
+            nodesContainer.innerHTML = '';
+
+            wishes.slice().reverse().forEach((w, index) => {
+                const item = document.createElement('div');
+                item.className = 'p-2.5 rounded-xl bg-white/80 border border-maroon-100 text-xs space-y-0.5 shadow-sm';
+                item.innerHTML = `<span class="font-bold text-maroon-800">${escapeHtml(w.name)}:</span> <span class="text-gray-700 font-light">"${escapeHtml(w.text)}"</span>`;
+                list.appendChild(item);
+
+                if (index < 12) {
+                    const node = document.createElement('div');
+                    node.className = 'absolute wish-node flex items-center justify-center cursor-pointer';
+                    const positions = [
+                        { top: '25%', left: '35%' }, { top: '20%', left: '55%' },
+                        { top: '35%', left: '20%' }, { top: '30%', left: '70%' },
+                        { top: '45%', left: '48%' }, { top: '15%', left: '42%' },
+                        { top: '40%', left: '30%' }, { top: '42%', left: '65%' }
+                    ];
+                    const pos = positions[index % positions.length];
+                    node.style.top = pos.top;
+                    node.style.left = pos.left;
+                    node.title = `${w.name}: ${w.text}`;
+                    node.innerHTML = `<i class="fas fa-heart text-maroon-700 text-sm hover:scale-125 transition-transform"></i>`;
+                    nodesContainer.appendChild(node);
+                }
             });
         }
 
-        function handleWish(e) {
+        document.getElementById('wishForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            const name = document.getElementById('wish-name').value;
-            const wish = document.getElementById('wish-text').value;
+            const input = document.getElementById('wishInput');
+            const text = input.value.trim();
+            if (text) {
+                wishes.push({ name: currentGuestName, text: text });
+                localStorage.setItem('duleeka_ovindi_wishes', JSON.stringify(wishes));
+                renderWishes();
+                input.value = '';
+            }
+        });
 
-            fetch(SCRIPT_URL, {
-                method: 'POST',
-                mode: 'no-cors',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ type: 'WISH', name: name, wish: wish })
-            }).then(() => {
-                alert("Thank you for your heartfelt blessing!");
-                document.getElementById('wish-form').reset();
-            }).catch(() => {
-                alert("Something went wrong. Please try again.");
-            });
+        // 7. WHATSAPP RSVP DISPATCHER
+        document.getElementById('whatsappRsvpForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('rsvpGuestName').value.trim();
+            const status = document.getElementById('rsvpStatus').value;
+            const count = document.getElementById('rsvpCount').value;
+            const note = document.getElementById('rsvpNote').value.trim();
+
+            const textMsg = `*WEDDING RSVP RESPONSE*%0A` +
+                            `--------------------------------%0A` +
+                            `*Guest Name:* ${encodeURIComponent(name)}%0A` +
+                            `*Attendance:* ${encodeURIComponent(status)}%0A` +
+                            `*Attending Count:* ${encodeURIComponent(count)}%0A` +
+                            `*Special Note:* ${encodeURIComponent(note || 'None')}%0A%0A` +
+                            `*Event:* Duleeka %26 Ovindi Wedding%0A` +
+                            `*Date:* Dec 18, 2026 @ Mandakini Banquet Hotel`;
+
+            window.open(`https://wa.me/?text=${textMsg}`, '_blank');
+        });
+
+        function escapeHtml(str) {
+            return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
         }
+
+        // INITIALIZATION
+        window.addEventListener('DOMContentLoaded', () => {
+            initGuestName();
+            createPetals();
+            initScratchCard();
+            updateCountdown();
+            loadWishes();
+        });
     </script>
 </body>
 </html>
